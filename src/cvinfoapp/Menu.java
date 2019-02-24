@@ -118,45 +118,102 @@ public class Menu {
 
     private void displayHeader(String message) {
         //Reusable method for desplaying different headers
-        //Determines form of header 
+
         System.out.println();
+        //Defines message length as message + 6 spaces
         int width = message.length() + 6;
+        //Creates StringBuilder method
         StringBuilder sb = new StringBuilder();
+        //Appends + sign to beginning of toString
         sb.append("+");
+        //Appends 1 sign - to body of toString in width per char
         for (int i = 0; i < width; ++i) {
             sb.append("-");
-
         }
-        //Formats header to specific look with custom text
+        //Appends + sign to end of toString
         sb.append("+");
+        //Prints built toString above the custom message
         System.out.println(sb.toString());
         System.out.println("|   " + message + "   |");
+        //Prints built toString below the custom message
         System.out.println(sb.toString());
     }
 
-    private void printPersonalInfo() {
-        displayHeader("PERSONAL INFORMATION");
-        System.out.println("Name: Aleksandar Stojanovic");
-        System.out.println("Email: 1plsdontsapmme@gmail.com");
-        System.out.println("Address: Cara Dusana Doboj, Bosnia and Herzegovina");
-        System.out.println("Phone number: 0038765***900");
-        System.out.println("---------------------------------------------------");
+    private void displayContent1(String message) {
+        //Reusable method for desplaying content
+        System.out.println();
+        //Defines message length as message 
+        int width = message.length();
+        //Creates StringBuilder method
+        StringBuilder sb = new StringBuilder();
+        //Appends 1 sign - to body of toString in width per char
+        for (int i = 0; i < width; ++i) {
+            sb.append("-");
+        }
+        //Prints built toString above the custom message
+        System.out.println(sb.toString());
+        System.out.println(message);
+        System.out.println(sb.toString());
     }
 
-    private void printWorkExperience() {
-        displayHeader("WORK EXPERIENCE");
-        System.out.println("01.06.2017 - Present: Vice chief Accountant in international company.");
-        System.out.println("21.11.2016 - 03.05.2017: Bar Owner/Manager.");
-        System.out.println("03.10.2013 - 15.06.2016: Proffesional translator of ducments and scientific papaers.");
-        System.out.println("-------------------------------------------------------------------------------------");
+    private void displayContent3(String message, String message1, String message2) {
+        //Reusable method for desplaying content
+        System.out.println();
+        //Defines message length as message + 25 spaces
+        int width = message.length() + 25;
+        //Creates StringBuilder method
+        StringBuilder sb = new StringBuilder();
+        //Appends 1 sign - to body of toString in width per char
+        for (int i = 0; i < width; ++i) {
+            sb.append("-");
+        }
+        //Prints built toString above the custom message
+        System.out.println(sb.toString());
+        System.out.println(message);
+        System.out.println(message1);
+        System.out.println(message2);
+        System.out.println(sb.toString());
     }
 
-    private void printEducation() {
-        displayHeader("EDUCATION");
-        System.out.println("30.10.2013 - 06.09.2016: Master of Arts in English Language and Literature");
-        System.out.println("08.07.2019 - 18.06.2013: Bachelor of Arts in English Language and Literature");
-        System.out.println("02.09.2005 - 15.06.2009: Economics technician");
-        System.out.println("------------------------------------------------------------------------------");
+    private void displayContent4(String message, String message1, String message2, String message3) {
+        //Reusable method for desplaying content
+        System.out.println();
+        //Defines message length as message + 25 spaces
+        int width = message.length() + 25;
+        //Creates StringBuilder method
+        StringBuilder sb = new StringBuilder();
+        //Appends 1 sign - to body of toString in width per char
+        for (int i = 0; i < width; ++i) {
+            sb.append("-");
+        }
+        //Prints built toString above the custom message
+        System.out.println(sb.toString());
+        System.out.println(message);
+        System.out.println(message1);
+        System.out.println(message2);
+        System.out.println(message3);
+        System.out.println(sb.toString());
+    }
+
+    private void displayContent5(String message, String message1, String message2, String message3, String message4) {
+        //Reusable method for desplaying content
+        System.out.println();
+        //Defines message length as message + 25 spaces
+        int width = message.length() + 25;
+        //Creates StringBuilder method
+        StringBuilder sb = new StringBuilder();
+        //Appends 1 sign - to body of toString in width per char
+        for (int i = 0; i < width; ++i) {
+            sb.append("-");
+        }
+        //Prints built toString above the custom message
+        System.out.println(sb.toString());
+        System.out.println(message);
+        System.out.println(message1);
+        System.out.println(message2);
+        System.out.println(message3);
+        System.out.println(message4);
+        System.out.println(sb.toString());
     }
 
     private String askQuestion(String question, List<String> answers) {
@@ -191,6 +248,26 @@ public class Menu {
         return response;
     }
 
+    private void printPersonalInfo() {
+        displayHeader("PERSONAL INFORMATION");
+        displayContent4("Name: Aleksandar Stojanovic", "Email: 1plsdontsapmme@gmail.com",
+                "Address: Cara Dusana Doboj, Bosnia and Herzegovina", "Phone number: 0038765***900");
+    }
+
+    private void printWorkExperience() {
+        displayHeader("WORK EXPERIENCE");
+        displayContent3("01.06.2017 - Present: Vice chief Accountant in international company.",
+                "21.11.2016 - 03.05.2017: Bar Owner/Manager.",
+                "03.10.2013 - 15.06.2016: Proffesional translator of ducments and scientific papaers.");
+    }
+
+    private void printEducation() {
+        displayHeader("EDUCATION");
+        displayContent3("30.10.2013 - 06.09.2016: Master of Arts in English Language and Literature",
+                "08.07.2019 - 18.06.2013: Bachelor of Arts in English Language and Literature",
+                "02.09.2005 - 15.06.2009: Economics technician");
+    }
+
     private void printGeneralSkills() throws InvalidSkillTypeExcetpion {
         displayHeader("GENERAL SKILLS");
         //Takes user selection
@@ -198,24 +275,24 @@ public class Menu {
         //Displays first option
         if (skillType.equalsIgnoreCase("communication")) {
             displayHeader("COMMUNICATION SKILLS");;
-            System.out.println("Advanced skills in communication with:");
-            System.out.println("Superiors/Colleagues/Customers/Partners");
-            System.out.println("Advanced business communication skills including:");
-            System.out.println("Negotiation/Ordering/Advising/Consulting/Presentation");
+            displayContent4("Advanced skills in communication with:",
+                    "Superiors/Colleagues/Customers/Partners",
+                    "Advanced business communication skills including:",
+                    "Negotiation/Ordering/Advising/Consulting/Presentation");
             //Displays second option
         } else if (skillType.equalsIgnoreCase("organization")) {
             displayHeader("ORGANISATIONAL/MANAGERIAL SKILLS:");
-            System.out.println("Department organization:");
-            System.out.println("Organizing shifts/Vacation planning/Bonuses (rewards)/Staff requirements");
-            System.out.println("Employee evaluations/Monitoring/Correcting/Training employees/Task prioritization\n");
+            displayContent3("Department organization:",
+                    "Organizing shifts/Vacation planning/Bonuses (rewards)/Staff requirements",
+                    "Employee evaluations/Monitoring/Correcting/Training employees/Task prioritization");
             //Displays third option
         } else if (skillType.equalsIgnoreCase("speciality")) {
             displayHeader("SPECIALITY KNOWLEDGE:");
-            System.out.println("Accounting/Finance/Management\n");
+            displayContent1("Accounting/Finance/Management");
             //Displays fourth option
         } else if (skillType.equalsIgnoreCase("traits")) {
             displayHeader("PERSONAL TRAITS:");
-            System.out.println("Precise/Hardworking/Responsible/Reliable/Determined/Great pressure handling");
+            displayContent1("Precise/Hardworking/Responsible/Reliable/Determined/Great pressure handling");
         } else {
             throw new InvalidSkillTypeExcetpion();
         }
@@ -228,19 +305,18 @@ public class Menu {
         //Displays first option
         if (skillType.equalsIgnoreCase("pc")) {
             displayHeader("GENERAL PC SKILLS:");
-            System.out.println("Expert knowledge of Microsoft Office(Office Libre)");
-            System.out.println("Expert knowledge of Excel (Formulas, LOOKUP, conditioning)");
-            System.out.println("Expert knowledge of Diamant 3.0 accounting software(OfficialTraining&Experience)");
-            System.out.println("User knowledge of Linux OS\n");
-        //Displays second option
+            displayContent4("Expert knowledge of Microsoft Office(Office Libre)",
+                    "Expert knowledge of Excel (Formulas, LOOKUP, conditioning)",
+                    "Expert knowledge of Diamant 3.0 accounting software(OfficialTraining&Experience)",
+                    "User knowledge of Linux OS");
+            //Displays second option
         } else if (skillType.equalsIgnoreCase("programming")) {
             displayHeader("PROGRAMMING KNOWLEDGE:");
-            System.out.println("Good knowledge of Java (Actively Learning)");
-            System.out.println("Understanding of Swing and SceneBuilder");
-            System.out.println("Understanding of MySql(Actively Learning)");
-            System.out.println("Work experience with Scrum tool 'Jira'");
-            System.out.println("User knowledge of Git");
-            System.out.println("JavaScript(Getting familiar with basics)");
+            displayContent5("Good knowledge of Java(Swing,SceneBuilder)(Actively Learning)",
+                    "Understanding of MySql(Actively Learning)",
+                    "Work experience with Scrum tool 'Jira'",
+                    "User knowledge of Git",
+                    "JavaScript(Getting familiar with basics)");
         } else {
             throw new InvalidSkillTypeExcetpion();
         }
@@ -249,10 +325,11 @@ public class Menu {
     private void printAppInfo() {
         //Displays some info about this app
         displayHeader("APPLICATION INFO");
-        System.out.println("Display of personal information in this application is without much detail");
-        System.out.println("in order to avoid missue of my private information.\n");
-        System.out.println("However basic this app may be, it is 100% designed coded and developed");
-        System.out.println("by Aleksandar Stojanovc with purpose of learning and practicing Java code.\n");
-        System.out.println("Thank you for using it and respecting my prive information.");
+        displayContent5("Display of personal information in this application is without much detail",
+                "in order to avoid missue of my private information.\n",
+                "However basic this app may be, it is 100% designed coded and developed",
+                "by Aleksandar Stojanovc with purpose of learning and practicing Java code.\n",
+                "Thank you for using it and respecting my prive information.");
     }
+
 }
