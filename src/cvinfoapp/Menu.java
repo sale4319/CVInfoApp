@@ -1,7 +1,5 @@
 package cvinfoapp;
 
-import java.util.Arrays;
-import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -15,7 +13,7 @@ public class Menu {
 
     public static void main(String[] args) {
         Menu menu = new Menu();
-        menu.runMenu();    
+        menu.runMenu();
     }
 
     private void runMenu() {
@@ -32,19 +30,18 @@ public class Menu {
 
     private void printHeader() {
         //Contains general header
-        displayHeader("Hello and welcome to my CV"); 
+        displayHeader("Hello and welcome to my CV");
     }
 
     private void printMenu() {
         //Contains main menu
         displayHeader("Please make a selection");
-        System.out.println("1) Personal Infomation");
-        System.out.println("2) Work Experience");
-        System.out.println("3) Education");
-        System.out.println("4) General Skills");
-        System.out.println("5) Digital Skills");
-        System.out.println("6) About this Application");
-        System.out.println("0) Exit\n");
+        displayContent("1) Personal Infomation",
+                "2) Work Experience",
+                "3) Education",
+                "4) Skills",
+                "5) About this Application",
+                "0) Exit\n");
     }
 
     private int getInput() {
@@ -59,11 +56,11 @@ public class Menu {
                 System.out.println("Invalid selection. Nubers only please.");
             }
             //Makes sure that input is between 1 and 6
-            if (choice < 0 || choice > 6) {
+            if (choice < 0 || choice > 5) {
                 System.out.println("Choice outside of range. Please try again.");
             }
             //When input is correct returns selected case
-        } while (choice < 0 || choice > 6);
+        } while (choice < 0 || choice > 5);
         return choice;
     }
 
@@ -90,23 +87,15 @@ public class Menu {
             //4 Allows you to select which type of general skills you want to display
             case 4: {
                 try {
-                    printGeneralSkills();
-                } catch (InvalidSkillTypeExcetpion ex) {
+                    printSkills();
+                } catch (Exception e) {
                     System.out.println("Invalid selection. Please try again.");
                 }
             }
             break;
-            //5 Allows you to select which type of digital skills you want to display
-            case 5: {
-                try {
-                    printDigitalSkills();
-                } catch (InvalidSkillTypeExcetpion ex) {
-                    System.out.println("Invalid selection. Please try again.");
-                }
-            }
-            break;
-            //6 Displays information about this application
-            case 6:
+
+            //5 Displays information about this application
+            case 5:
                 printAppInfo();
                 break;
             default:
@@ -137,7 +126,7 @@ public class Menu {
         System.out.println(sb.toString());
     }
 
-    private void displayContent(String... args){
+    private void displayContent(String... args) {
         //Creates StringBuilder
         StringBuilder sb = new StringBuilder();
         //Passes number of - signs to toString
@@ -148,43 +137,11 @@ public class Menu {
         //Prints toString on top
         System.out.println(sb.toString());
         //Prints all arguments 
-        for(String arg:args){
+        for (String arg : args) {
             System.out.println(arg);
         }
         //Prints toString on bottom
         System.out.println(sb.toString());
-    }
-    
-    private String askQuestion(String question, List<String> answers) {
-        //This method is borrowed, I did not write it personally, but I tried to explain it in comments below
-        String response = "";
-        //This part takes user input which has to match one of predefined choices in array list
-        Scanner input = new Scanner(System.in);
-        boolean choices = ((answers == null) || answers.size() == 0) ? false : true;
-        boolean firstRun = true;
-        do {
-            if (!firstRun) {
-                System.out.println("Invalid selection. Please try again.");
-            }
-            //This part adds predifined options from Array list to displayed question
-            System.out.print(question);
-            if (choices) {
-                System.out.print("(");
-                for (int i = 0; i < answers.size() - 1; ++i) {
-                    System.out.print(answers.get(i) + "/");
-                }
-                System.out.print(answers.get(answers.size() - 1));
-                System.out.print("):");
-            }
-            //This asks for user input again if previous try was not correct rather than exiting menu
-            response = input.nextLine();
-            firstRun = false;
-            if (!choices) {
-                break;
-            }
-            //Returns user choices
-        } while (!answers.contains(response));
-        return response;
     }
 
     private void printPersonalInfo() {
@@ -207,57 +164,63 @@ public class Menu {
                 "02.09.2005 - 15.06.2009: Economics technician");
     }
 
-    private void printGeneralSkills() throws InvalidSkillTypeExcetpion {
-        displayHeader("GENERAL SKILLS");
-        //Takes user selection
-        String skillType = askQuestion("Please enter one of the following options: ", Arrays.asList("communication", "organization", "speciality", "traits"));
-        //Displays first option
-        if (skillType.equalsIgnoreCase("communication")) {
-            displayHeader("COMMUNICATION SKILLS");;
-            displayContent("Advanced skills in communication with:",
-                    "Superiors/Colleagues/Customers/Partners",
-                    "Advanced business communication skills including:",
-                    "Negotiation/Ordering/Advising/Consulting/Presentation");
-            //Displays second option
-        } else if (skillType.equalsIgnoreCase("organization")) {
-            displayHeader("ORGANISATIONAL/MANAGERIAL SKILLS:");
-            displayContent("Department organization:",
-                    "Organizing shifts/Vacation planning/Bonuses (rewards)/Staff requirements",
-                    "Employee evaluations/Monitoring/Correcting/Training employees/Task prioritization");
-            //Displays third option
-        } else if (skillType.equalsIgnoreCase("speciality")) {
-            displayHeader("SPECIALITY KNOWLEDGE:");
-            displayContent("Accounting/Finance/Management");
-            //Displays fourth option
-        } else if (skillType.equalsIgnoreCase("traits")) {
-            displayHeader("PERSONAL TRAITS:");
-            displayContent("Precise/Hardworking/Responsible/Reliable/Determined/Great pressure handling");
-        } else {
-            throw new InvalidSkillTypeExcetpion();
-        }
-    }
+    private void printSkills() {
+        displayHeader("Please make a selection");
+        displayContent("1)Communication skills",
+                "2)Organizational/Menagerial skills",
+                "3)Speciality knowledge",
+                "4)PC skills",
+                "5)Programming knowledge",
+                "0)Back");
+        int choice = getInput();
 
-    private void printDigitalSkills() throws InvalidSkillTypeExcetpion {
-        displayHeader("DIGITAL SKILLS");
-        //Takes user selection
-        String skillType = askQuestion("Please enter one of following skill groups: ", Arrays.asList("pc", "programming"));
-        //Displays first option
-        if (skillType.equalsIgnoreCase("pc")) {
-            displayHeader("GENERAL PC SKILLS:");
-            displayContent("Expert knowledge of Microsoft Office(Office Libre)",
-                    "Expert knowledge of Excel (Formulas, LOOKUP, conditioning)",
-                    "Expert knowledge of Diamant 3.0 accounting software(OfficialTraining&Experience)",
-                    "User knowledge of Linux OS");
-            //Displays second option
-        } else if (skillType.equalsIgnoreCase("programming")) {
-            displayHeader("PROGRAMMING KNOWLEDGE:");
-            displayContent("Good knowledge of Java(Swing,SceneBuilder)(Actively Learning)",
-                    "Understanding of MySql(Actively Learning)",
-                    "Work experience with Scrum tool 'Jira'",
-                    "User knowledge of Git",
-                    "JavaScript(Getting familiar with basics)");
-        } else {
-            throw new InvalidSkillTypeExcetpion();
+        switch (choice) {
+            //0 Returns to main menu
+            case 0:
+                break;
+            //1 Displays COMMUNICATION SKILLS
+            case 1:
+                displayHeader("COMMUNICATION SKILLS");
+                ;
+                displayContent("Advanced skills in communication with:",
+                        "Superiors/Colleagues/Customers/Partners",
+                        "Advanced business communication skills including:",
+                        "Negotiation/Ordering/Advising/Consulting/Presentation");
+                break;
+            //2 Displays ORGANISATIONAL/MANAGERIAL SKILLS  
+            case 2:
+                displayHeader("ORGANISATIONAL/MANAGERIAL SKILLS:");
+                displayContent("Department organization:",
+                        "Organizing shifts/Vacation planning/Bonuses (rewards)/Staff requirements",
+                        "Employee evaluations/Monitoring/Correcting/Training employees/Task prioritization");
+                break;
+            //3 Displays SPECIALITY KNOWLEDGE
+            case 3:
+                displayHeader("SPECIALITY KNOWLEDGE:");
+                displayContent("Accounting/Finance/Management",
+                        "PERSONAL TRAITS:",
+                        "Precise/Hardworking/Responsible/Reliable/Determined/Great pressure handling");
+                break;
+            //4 Displays GENERAL PC SKILLS
+            case 4:
+                displayHeader("GENERAL PC SKILLS:");
+                displayContent("Expert knowledge of Microsoft Office(Office Libre)",
+                        "Expert knowledge of Excel (Formulas, LOOKUP, conditioning)",
+                        "Expert knowledge of Diamant 3.0 accounting software(OfficialTraining&Experience)",
+                        "User knowledge of Linux OS");
+                break;
+            //Displays PROGRAMMING KNOWLEDGE
+            case 5:
+                displayHeader("PROGRAMMING KNOWLEDGE:");
+                displayContent("Good knowledge of Java(Swing,SceneBuilder)(Actively Learning)",
+                        "Understanding of MySql(Actively Learning)",
+                        "Work experience with Scrum tool 'Jira'",
+                        "User knowledge of Git",
+                        "JavaScript(Getting familiar with basics)");
+                break;
+
+            default:
+                System.out.println("Unknown error has occured.");
         }
     }
 
@@ -270,5 +233,5 @@ public class Menu {
                 "by Aleksandar Stojanovc with purpose of learning and practicing Java code.\n",
                 "Thank you for using it and respecting my prive information.");
     }
-    
+
 }
