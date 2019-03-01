@@ -130,7 +130,7 @@ public class Menu {
         //Creates StringBuilder
         StringBuilder sb = new StringBuilder();
         //Passes number of - signs to toString
-        int width = 83;
+        int width = args[2].length()+15;
         for (int i = 0; i < width; ++i) {
             sb.append("-");
         }
@@ -161,7 +161,7 @@ public class Menu {
         displayHeader("EDUCATION");
         displayContent("30.10.2013 - 06.09.2016: Master of Arts in English Language and Literature",
                 "08.07.2019 - 18.06.2013: Bachelor of Arts in English Language and Literature",
-                "02.09.2005 - 15.06.2009: Economics technician");
+                "02.09.2005 - 15.06.2009: Economics technician              ");
     }
 
     private void printSkills() {
